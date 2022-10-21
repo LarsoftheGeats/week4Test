@@ -79,15 +79,20 @@ function completeGoal( id ){
 
 }  
 function updateUserName (evt){
-    evt.preventDefault()
 
-    const userName=document.getElementById(user)
-    console.log(userName)
-    console.log(`${baseURL}/${userName}`)
+    const userName=document.querySelector("#user")
+    // console.log(userName.value)
+    // console.log(`${baseURL}/${userName.value}`)
     evt.preventDefault()
-    axios.put(`${baseURL}/${userName}`).
+    axios.put(`${baseURL}/${userName.value}`).
     then( res => {
-        console.log(res)
+        const person=document.createElement('div')
+        person.innerHTML = `<p class = "goal  ">goal   ${res.data}</p><br>`
+        body.appendChild(person)
+    
+
+        console.log(res.data)
+        document.appendChild
     })
 
 }
