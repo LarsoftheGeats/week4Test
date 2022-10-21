@@ -1,7 +1,7 @@
 let goals = [];//empty goals container
 let goalsInList = 0;
 //let completedGoals = []//empty completed List
-let user = "anonymous"
+let user = "Anonymous"
 
 module.exports = {
 
@@ -16,7 +16,7 @@ module.exports = {
     },
 
     getFortune: (req, res) => {
-        const fortunes = ["Do not be afraid of competition.", "You love peace.", "Enjoy being a spaceman.", "The good news is there is no bad news.", "Snakes fear you.", "Batman thinks you need to mellow out a bit.", "The Rock follows you for workout tips."];
+        const fortunes = [`${user}, do not be afraid of competition.`, `${user} loves peace.`, `Enjoy being a spaceman, ${user}`, `The good news is there is no bad news, ${user}`, `Snakes fear ${user}.`, `Batman thinks ${user} need to mellow out a bit.`, `The Rock follows ${user} for workout tips.`];
         let rndmIndx = Math.floor(Math.random() *fortunes.length);
         let rndmFortune = fortunes[rndmIndx];
 
@@ -50,7 +50,8 @@ module.exports = {
         user = req.params.userName;
         console.log(user)
         res.status(200).send(user)
-    }
+        
+    }// note fortune will change based on users name.  
 
 
     
