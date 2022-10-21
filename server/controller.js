@@ -8,6 +8,15 @@ module.exports = {
         let randomCompliment = compliments[randomIndex];
       
         res.status(200).send(randomCompliment);
+    },
+
+    getFortune: (req, res) => {
+        const fortunes = ["Do not be afraid of competition.", "You love peace.", "Enjoy being a spaceman.", "The good news is there is no bad news.", "Snakes fear you.", "Batman thinks you need to mellow out a bit.", "The Rock follows you for workout tips."];
+        let rndmIndx = Math.floor(Math.random() *fortunes.length);
+        let rndmFortune = fortunes[rndmIndx];
+
+        res.status(200).send(rndmFortune);
+
     }
 
 }
