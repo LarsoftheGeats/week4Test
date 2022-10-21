@@ -86,13 +86,7 @@ function updateUserName (evt){
     evt.preventDefault()
     axios.put(`${baseURL}/${userName.value}`).
     then( res => {
-        const person=document.createElement('div')
-        person.innerHTML = `<p class = "goal  ">goal   ${res.data}</p><br>`
-        body.appendChild(person)
-    
-
-        console.log(res.data)
-        document.appendChild
+        document.getElementById("usersName").textContent=res.data
     })
 
 }
