@@ -5,6 +5,7 @@ const fortuneBtn = document.getElementById("fortuneButton");
 //add jsLink for form
 const goalForm= document.querySelector("form");
 baseURL="http://localhost:4000/api";
+const updateUser = document.getElementById("updateUser")
 
 const getCompliment = (evt) => {
     evt.preventDefault;
@@ -77,6 +78,19 @@ function completeGoal( id ){
     })
 
 }  
+function updateUserName (evt){
+    evt.preventDefault()
+
+    const userName=document.getElementById(user)
+    console.log(userName)
+    console.log(`${baseURL}/${userName}`)
+    evt.preventDefault()
+    axios.put(`${baseURL}/${userName}`).
+    then( res => {
+        console.log(res)
+    })
+
+}
 
 
 
@@ -85,3 +99,4 @@ complimentBtn.addEventListener('click', getCompliment)
 fortuneBtn.addEventListener('click',getFortune)
 //add event listener for goal
 goalForm.addEventListener('submit',addGoal)
+updateUser.addEventListener('submit',updateUserName)

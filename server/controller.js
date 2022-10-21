@@ -1,5 +1,7 @@
 let goals = [];//empty goals container
 let goalsInList = 0;
+//let completedGoals = []//empty completed List
+let user = "anonymous"
 
 module.exports = {
 
@@ -36,31 +38,20 @@ module.exports = {
 
     deleteGoal: (req,res) => {
         const deleteId = req.params.id;
-        let index = findIndex(+deleteId)
+        //console.log("mae it to delete")
+        let index =goals.findIndex( element => element.goalNum === +deleteId)
         goals.splice(index,1)
         res.status(200).send(goals)
+      
 
     },//end delete goal block
 
-    //change goal takes an argument, type, and data the thing to change,
-    //idd is the goal to change.  
-    // changeGoal: ((req,res) => {
-    //     const type = req.body.type;
-    //     let id = req.params.id;
+    changeUser: (req,res) => {
+        user = req.params.userName;
+        console.log(user)
+        res.status(200).send(user)
+    }
 
-    //     let index=goals.findIndex( element => element.goalNum === +id)
-    //     if (type === 'changeDate'){
-    //         goals[index].date = req.body.data;//update your date of completion
-    //         res.status(200).send(goals)
-    //     }
-    //     if (type === 'changeGoal'){
-    //         goals[index].goal=req.body.data;
-    //         res.status(200).send(goals)//update your goal
-    //     }
-    //     else{
-    //         res.status(400)//catchall
-    //     }
-    // })
 
     
 
