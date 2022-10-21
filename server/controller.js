@@ -1,6 +1,6 @@
 let goals = [];//empty goals container
 let goalsInList = 0;
-//let completedGoals = []//empty completed List
+let completedGoals = []//empty completed List
 let user = "Anonymous"
 
 module.exports = {
@@ -38,9 +38,10 @@ module.exports = {
 
     deleteGoal: (req,res) => {
         const deleteId = req.params.id;
-        //console.log("mae it to delete")
-        let index =goals.findIndex( element => element.goalNum === +deleteId)
-        goals.splice(index,1)
+        //console.log("made it to delete")
+        let index =goals.findIndex( element => element.goalNum === +deleteId);
+        completedGoals.push(goals[index]);
+        goals.splice(index,1);
         res.status(200).send(goals)
       
 
@@ -51,7 +52,15 @@ module.exports = {
         console.log(user)
         res.status(200).send(user)
         
-    }// note fortune will change based on users name.  
+    },// note fortune will change based on users name.  
+
+    getCompletedGoals: (req,res) => {
+        res.status(200).send(completedGoals)
+    },
+
+    getToDoList: (req,res) => {
+        res.status(200).send(goals)
+    }
 
 
     

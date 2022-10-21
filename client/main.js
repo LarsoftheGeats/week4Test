@@ -4,8 +4,10 @@ const goalsContainer = document.getElementById("goals-container")
 const fortuneBtn = document.getElementById("fortuneButton");
 //add jsLink for form
 const goalForm= document.querySelector("form");
-baseURL="http://localhost:4000/api";
-const updateUser = document.getElementById("updateUser")
+const baseURL="http://localhost:4000/api";
+const completedButton = document.getElementById("completedGoals");
+const updateUser = document.getElementById("updateUser");
+const toDoList=document.getElementById("toDoList");
 
 const getCompliment = (evt) => {
     evt.preventDefault;
@@ -90,6 +92,34 @@ function updateUserName (evt){
     })
 
 }
+function getCompletedGoals (evt){
+    evt.preventDefault()
+    axios.get(`${baseURL}/goal/completedGoals`).then( res =>
+        {
+            goalsContainer.innerHTML=""
+            const newP = document.createElement("div")
+            newP.innerHTML = `<p>Completed Goals</p>`   
+            for (let i =0; i< res.data.length; i++)
+            {
+                console.log(res.data[i])
+                createGoal(res.data[i])
+            }
+        })
+}
+function getIncompleteGoals (evt){
+    evt.preventDefault();
+    axios.get(`${baseURL}/goal/`).then (res => {
+        goalsContainer.innerHTML=""
+        const newP = document.createElement("div")
+        newP.innerHTML = `<p>Completed Goals</p>`   
+        for (let i =0; i< res.data.length; i++)
+        {
+            console.log(res.data[i])
+            createGoal(res.data[i])
+        }
+    })//completed . then block
+
+}
 
 
 
@@ -98,4 +128,6 @@ complimentBtn.addEventListener('click', getCompliment)
 fortuneBtn.addEventListener('click',getFortune)
 //add event listener for goal
 goalForm.addEventListener('submit',addGoal)
+completedButton.addEventListener('click',getCompletedGoals)
 updateUser.addEventListener('submit',updateUserName)
+toDoList.addEventListener('click', getIncompleteGoals)
